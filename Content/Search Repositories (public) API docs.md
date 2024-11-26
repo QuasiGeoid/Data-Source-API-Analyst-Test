@@ -25,6 +25,9 @@ Find repositories via various criteria. This method returns up to 100 results [p
 | `422`       | Validation failed, or the endpoint has been spammed.                                            |
 | `503`       | Service unavailable                                                                             |
 
+### Restrictions
+Only the first 1000 search results are available (see 🧪 _"Search results limit exceeded"_ test in Postman)
+
 ### Example JSON Response
 1. Success (status code 200):
 
