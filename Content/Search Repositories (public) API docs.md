@@ -26,7 +26,7 @@ Find repositories via various criteria. This method returns up to 100 results [p
 | `503`       | Service unavailable                                                                             |
 
 ### Example JSON Response
-Below is an example of a JSON response from the API:
+1. Success (status code 200):
 
 ```json
 {
@@ -67,3 +67,20 @@ Below is an example of a JSON response from the API:
     }
   ]
 }
+```
+2. Fail (status code 422):
+
+```json
+{
+    "message": "Validation Failed",
+    "errors": [
+        {
+            "resource": "Search",
+            "field": "q",
+            "code": "missing"
+        }
+    ],
+    "documentation_url": "https://docs.github.com/v3/search",
+    "status": "422"
+}
+```
