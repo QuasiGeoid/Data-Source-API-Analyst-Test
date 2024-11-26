@@ -21,11 +21,12 @@ The task involves working with the **GitHub API** to test the following endpoint
 Ensure the server responds with the correct HTTP status code for both valid and invalid requests.
 
 **Why**:  
-- **200**: Confirms the request was processed successfully.  
-- **422 or 503**: Verifies these are not returned for valid queries.
+- **200**: Confirms the request was processed successfully (see 🧪_"Request includes only the required query parameter"_ test in Postman).
+- **422**: Verifies API's behavior with missing required or invalid value of query parameter (see _"Required parameter not provided"_ test in Postman).
 
 **Results**:  
-✅ **Passed**
+💡 **Note:**
+The API ignores invalid values for non-required query parameters (see 🧪_"With invalid values of query params"_ test in Postman).
 
 ---
 
@@ -40,11 +41,34 @@ Verify the structure of the response matches the provided schema.
 ⚠️ **Issue Identified**  
 The JSON schema is not entirely correct:  
 - The `pushed_at` field can be `null`, not just a string.  
-  _(Example found during "Sort by updated in ascending order" test in Postman.)_
+  (Example found during _"Sort by updated in ascending order"_ test in Postman.)_
 
 ---
 
-## Notes
-- Each test is designed to evaluate both correctness and reliability of the GitHub API responses.
-- Future work could involve validating additional edge cases for fields like `pushed_at`.
+### 3. Validate Query Parameters
+
+**Purpose:**  
+To ensure the query parameters affect the results as expected (`sort`, `order`, `per_page`, `page`).
+
+**Why:**  
+- **Sorting:** Ensures the results align with the `sort` parameter (see 🧪 _"Sort by..."_ tests in Postman).  
+- **Pagination:** Confirms the correct number of results is returned (see 🧪 _"per_page..."_ tests in Postman).
+
+**Results:**  
+⚠️ **Issues identified**:  
+1. Sorting in ascending order by `forks` does not differentiate between repositories with a `forks_count` (`forks`) of 0 or 1 (see 🧪 _"Sort by forks in ascending order"_ test in Postman).  
+2. The sorting order by `help-wanted-issues` is not working as expected because it mixes items with and without `help-wanted` in their `topics`. However, all repositories with the `help-wanted` topic are correctly sorted by `open_issues_count` (see 🧪 _"Sort by help-wanted-issues in default order"_ test in Postman).  
+3. The sorting order by `updated` is not working as expected because the order based on the `updated_at` field value can be incorrect (see 🧪 _"Sort by updated in ascending order"_ test in Postman).
+
+---
+
+### 4. Validate Headers
+**Test Purpose:**  
+To ensure the correct Content-Type and Link headers and `text_matches` (see 🧪 _"With text match metadata"_ test in Postman) field are returned.
+
+**Why:**  
+Ensures the API communicates its response format correctly.
+
+**Results:**
+✅ **Passed**
 
