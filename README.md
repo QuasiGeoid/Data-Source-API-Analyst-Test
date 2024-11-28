@@ -170,38 +170,11 @@ Ensures the API communicates its response format correctly.
 
 ### 5. Performance
 **Test Purpose:**  
-To measure response time and ensure it meets performance benchmarks..
+To measure response time and ensure it meets performance benchmarks.
 
 **Why:**  
 Confirms the API performs well under normal conditions.
 
 **Results:**
 ✅ **Passed**
-![Screenshot from 2024-11-28 11-11-21](https://github.com/user-attachments/assets/6e1cbac5-2215-426e-bd4c-6b436d0567ee)
-
-### 6. Restrictions
-
-#### Purpose:
-To ensure the API enforces documented restrictions effectively.
-
-#### Why:
-Verifies the API behaves as expected when constraints are exceeded, maintaining consistent performance and reliability.
-
-#### Test Cases:
-
-1. **Maximum Return Results**
-   - **Description**: Validate that the API does not return more than 1000 results for a single query.
-   - **Expected Result**: If the total number of results exceeds 1000, the API should return a status code of 422 and a meaningful error message.
-   - **Test Example**: Run a query expected to return more than 1000 results.
-   - **Postman Test**: 🧪 _"Search results limit exceeded"_
-
-2. **Query param `q` Length and Operators**
-   - **Description**: Validate that the API enforces restrictions on query parameters, including length and the use of logical operators.
-   - **Expected Results**:
-     - `q` longer than 256 characters (excluding operators or qualifiers) should result in a response with status code of 422 and a meaningful error message.
-     - `q` with more than five logical operators (AND, OR, NOT) should result in a response with status code of 422 and a meaningful error message.
-   - **Test Example**: Send a query that exceeds the character limit or logical operator count.
-   - **Postman Tests**: 🧪 _"Query exceeds character"_ and _"Query operator limit"_
-
-**Results:**
-✅ **Passed**
+![Screenshot from 2024-11-28 14-09-14](https://github.com/user-attachments/assets/f95f1c5d-479c-4d9b-88ec-38158f83fab1)
