@@ -156,7 +156,7 @@ Verifies the API behaves as expected when constraints are exceeded, maintaining 
    - **Postman Tests**: 🧪 _"Query exceeds character"_ and _"Query operator limit"_
 
 **Results:**
-✅ **Passed**
+⚠️ Issue identified: `q` with more than five logical operators (AND, OR, NOT) results in deceptive error message: `The search contains only logical operators (AND / OR / NOT) without any search terms.`
 
 ---
 
