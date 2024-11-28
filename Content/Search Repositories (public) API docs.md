@@ -22,7 +22,7 @@ GET /search/repositories
 | `per_page` | integer   | The number of results per page (**max 100**).<br>For more information, see ["Using pagination in the REST API"](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api).<br>**Default:** `30`                                            |
 | `page`     | integer   | The page number of the results to fetch.<br>For more information, see ["Using pagination in the REST API"](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api).<br>**Default:** `1`                                             |
 
-### HTTP Response Status Codes for "Search Repositories"
+### HTTP Response Status Codes
 
 | Status Code | Description                                                                                     |
 |-------------|-------------------------------------------------------------------------------------------------|
