@@ -60,7 +60,7 @@ Too many requests sent in a short period.
 
 ## Search Repositories (public)
 
-### Issue: Response is 422 with the message: "The search is longer than 256 characters."
+### Issue: Response is 422 with the `message: "The search is longer than 256 characters."`
 
 **Causes**  
 The query parameter `q` exceeds the maximum allowed length of **256 characters**, which violates the API's constraints.
@@ -79,7 +79,7 @@ The query parameter `q` exceeds the maximum allowed length of **256 characters**
 
 ---
 
-### Issue: Response is 422 with the message: "The search contains only logical operators (AND / OR / NOT) without any search terms."
+### Issue: Response is 422 with the `message: "The search contains only logical operators (AND / OR / NOT) without any search terms."`
 
 **Causes**  
 The query parameter `q` contains more than **five logical operators (AND, OR, NOT)**, violating the API's constraints.
