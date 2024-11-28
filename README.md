@@ -9,7 +9,7 @@ This document outlines the homework assignment for the **Data Source API Analyst
 The task involves working with the **GitHub API** to test the following endpoints:
 
 1. **Search Repositories (public)**
-2. **Commits**
+2. **List Commits**
 3. **Contents**
 
 ---
@@ -24,7 +24,8 @@ Ensure the server responds with the correct HTTP status code for both valid and 
 - **200**: Confirms the request was processed successfully (see 🧪 _"Request includes only the required query parameter"_ test in Postman).
 - **422**: Verifies API's behavior with missing required or invalid value of query parameter (see 🧪 _"Required parameter not provided"_ test in Postman).
 
-**Results**:  
+**Results**:
+✅ **Passed**
 💡 **Note:**
 The API ignores invalid values for non-required query parameters (see 🧪 _"With invalid values of query params"_ test in Postman).
 
@@ -84,5 +85,33 @@ Confirms the API performs well under normal conditions.
 **Results:**
 ✅ **Passed**
 ![Screenshot from 2024-11-28 11-11-21](https://github.com/user-attachments/assets/6e1cbac5-2215-426e-bd4c-6b436d0567ee)
+
+### 6. Restrictions
+
+#### Purpose:
+To ensure the API enforces documented restrictions effectively.
+
+#### Why:
+Verifies the API behaves as expected when constraints are exceeded, maintaining consistent performance and reliability.
+
+#### Test Cases:
+
+1. **Maximum Return Results**
+   - **Description**: Validate that the API does not return more than 1000 results for a single query.
+   - **Expected Result**: If the total number of results exceeds 1000, the API should return a status code of 422 and a meaningful error message.
+   - **Test Example**: Run a query expected to return more than 1000 results.
+   - **Postman Test**: 🧪 _"Search results limit exceeded"_
+
+2. **Query param `q` Length and Operators**
+   - **Description**: Validate that the API enforces restrictions on query parameters, including length and the use of logical operators.
+   - **Expected Results**:
+     - `q` longer than 256 characters (excluding operators or qualifiers) should result in a response with status code of 422 and a meaningful error message.
+     - `q` with more than five logical operators (AND, OR, NOT) should result in a response with status code of 422 and a meaningful error message.
+   - **Test Example**: Send a query that exceeds the character limit or logical operator count.
+   - **Postman Tests**: 🧪 _"Query exceeds character"_ and _"Query operator limit"_
+
+**Results:**
+✅ **Passed**
+
 
 
