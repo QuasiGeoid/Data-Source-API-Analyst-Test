@@ -87,7 +87,7 @@ Verify the structure of the response matches the provided schema.
 ⚠️ **Issue Identified**  
 The JSON schema is not entirely correct:  
 - The `pushed_at` field can be `null`, not just a string.  
-  (Example found during _"Sort by updated in ascending order"_ test in Postman.)_
+  (Example found during _"Sort by updated in ascending order"_ test in Postman)
 
 ---
 
