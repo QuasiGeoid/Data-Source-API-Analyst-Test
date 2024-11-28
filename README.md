@@ -11,7 +11,7 @@ The client outlined the following requirements for the project:
 ## 1. Search Repositories (public)
 
 **Purpose:**  
-Allow users to search for public repositories based on keywords, descriptions, or other metadata.
+- Allow users to search for public repositories based on keywords, descriptions, or other metadata.
 
 **Features:**  
 - Support for paginated results.
@@ -22,7 +22,7 @@ Allow users to search for public repositories based on keywords, descriptions, o
 ## 2. Retrieve Commits
 
 **Purpose:**  
-Provide access to the commit history of a specific repository or branch.
+- Provide access to the commit history of a specific repository or branch.
 
 **Features:**
 - Support for paginated results.
@@ -38,7 +38,7 @@ Provide access to the commit history of a specific repository or branch.
 ## 3. Access Repository Contents
 
 **Purpose:**  
-Enable users to retrieve the contents of a repository, including files and directories.
+- Enable users to retrieve the contents of a repository, including files and directories.
 
 **Features:**  
 - Differentiate between files and directories in responses.  
@@ -50,7 +50,7 @@ Enable users to retrieve the contents of a repository, including files and direc
 ## 4. Error Handling
 
 **Purpose:**  
-Ensure the API delivers clear and actionable error messages.
+- Ensure the API delivers clear and actionable error messages.
 
 **Requirements:**  
 - Handle **404 errors** gracefully when a path does not exist.  
@@ -62,39 +62,38 @@ Ensure the API delivers clear and actionable error messages.
 ## Tests for Search Repositories (public)
 
 ### 1. Response Status Code
-**Purpose**:  
-Ensure the server responds with the correct HTTP status code for both valid and invalid requests.
+**Purpose:**   
+- Ensure the server responds with the correct HTTP status code for both valid and invalid requests.
 
-**Why**:  
+**Why:**  
 - **200**: Confirms the request was processed successfully (🧪 _"Request includes only the required query parameter"_ test in Postman).
 - **422**: Verifies API's behavior with missing required or invalid value of query parameter (🧪 _"Required parameter not provided"_ test in Postman).
 
-**Results**:
-✅ **Passed**
+**Results**:  
+✅ **Passed**  
 💡 **Note:**
 The API ignores invalid values for non-required query parameters (🧪 _"With invalid values of query params"_ test in Postman).
 
 ---
 
 ### 2. Response Body Structure
-**Purpose**:  
-Verify the structure of the response matches the provided schema.
+**Purpose:**   
+- Verify the structure of the response matches the provided schema.
 
-**Why**:  
+**Why:**  
 - Ensures the API returns the required fields and adheres to its contract.
 
 **Results**:  
 ⚠️ **Issue Identified**  
 The JSON schema is not entirely correct:  
-- The `pushed_at` field can be `null`, not just a string.  
-  (Example found during _"Sort by updated in ascending order"_ test in Postman)
+- The `pushed_at` field can be `null`, not just a string (🧪 _"Sort by updated in ascending order"_ test in Postman)
 
 ---
 
 ### 3. Query Parameters
 
 **Purpose:**  
-To ensure the query parameters affect the results as expected (`sort`, `order`, `per_page`, `page`).
+- To ensure the query parameters affect the results as expected (`sort`, `order`, `per_page`, `page`).
 
 **Why:**  
 - **Sorting:** Ensures the results align with the `sort` and `order` parameters (🧪 _"Sort by..."_ tests in Postman).  
@@ -109,11 +108,11 @@ To ensure the query parameters affect the results as expected (`sort`, `order`, 
 ---
 
 ### 4. Headers
-**Test Purpose:**  
-To ensure the correct Content-Type and Link headers and `text_matches` (🧪 _"With text match metadata"_ test in Postman) field are returned.
+**Purpose**  
+- To ensure the correct Content-Type and Link headers and `text_matches` (🧪 _"With text match metadata"_ test in Postman) field are returned.
 
 **Why:**  
-Ensures the API communicates its response format correctly.
+- Ensures the API communicates its response format correctly.
 
 **Results:**
 ✅ **Passed**
@@ -121,25 +120,25 @@ Ensures the API communicates its response format correctly.
 ---
 
 ### 5. Performance
-**Test Purpose:**  
-To measure response time and ensure it meets performance benchmarks..
+**Purpose**  
+- To measure response time and ensure it meets performance benchmarks.
 
 **Why:**  
-Confirms the API performs well under normal conditions.
+- Confirms the API performs well under normal conditions.
 
-**Results:**
+**Results:**  
 ✅ **Passed**
 ![Screenshot from 2024-11-28 11-11-21](https://github.com/user-attachments/assets/6e1cbac5-2215-426e-bd4c-6b436d0567ee)
 
 ### 6. Restrictions
 
-#### Purpose:
-To ensure the API enforces documented restrictions effectively.
+**Purpose**   
+- To ensure the API enforces documented restrictions effectively.
 
-#### Why:
-Verifies the API behaves as expected when constraints are exceeded, maintaining consistent performance and reliability.
+**Why:**  
+- Verifies the API behaves as expected when constraints are exceeded, maintaining consistent performance and reliability.
 
-#### Test Cases:
+**Test Cases:**
 
 1. **Maximum Return Results**
    - **Description**: Validate that the API does not return more than 1000 results for a single query.
@@ -155,32 +154,32 @@ Verifies the API behaves as expected when constraints are exceeded, maintaining 
    - **Test Example**: Send a query that exceeds the character limit or logical operator count.
    - **Postman Tests**: 🧪 _"Query exceeds character"_ and _"Query operator limit"_
 
-**Results:**
+**Results:**  
 ⚠️ Issue identified: `q` with more than five logical operators (AND, OR, NOT) results in deceptive error message: `The search contains only logical operators (AND / OR / NOT) without any search terms.`
 
 ---
 
 ## Tests for List Commits
 ### 1. Response Status Code
-**Purpose**:  
-Ensure the server responds with the correct HTTP status code for both valid and invalid requests.
+**Purpose:**   
+- Ensure the server responds with the correct HTTP status code for both valid and invalid requests.
 
-**Why**:  
+**Why:**  
 - **200**: Confirms the request was processed successfully (🧪 _"Required params are provided"_ test in Postman).
 - **404**: Verifies API's behavior with missing or invalid required path parameters (🧪 _"owner not provided"_, _"repo not provided"_, and _"Invalid combination of owner and repo"_ tests in Postman).
 
-**Results**:
-✅ **Passed**
+**Results**:  
+✅ **Passed**  
 💡 **Note:**
 The API ignores invalid values for non-required query parameters (🧪 _"With invalid values of query params"_ test in Postman).
 
 ---
 
 ### 2. Response Body Structure
-**Purpose**:  
-Verify the structure of the response matches the provided schema.
+**Purpose:**   
+- Verify the structure of the response matches the provided schema.
 
-**Why**:  
+**Why:**  
 - Ensures the API returns the required fields and adheres to its contract.
 
 **Results**:  
@@ -191,25 +190,24 @@ Verify the structure of the response matches the provided schema.
 ### 3. Query Parameters
 
 **Purpose:**  
-To ensure the query parameters affect the results as expected.
+- To ensure the query parameters affect the results as expected.
 
-**Why:** Ensures the results align with query parameters and confirms the correct number of results is returned.
+**Why:**  
+- Ensures the results align with query parameters and confirms the correct number of results is returned.
 
 **Results:**
-🧪 _"query param ..."_ and _"per_page..."_ tests in Postman
-
-⚠️ **Issue identified**: if the `sha` query parameter contains a typo and the `author` parameter is populated, the response returns a `500` error (🧪 _"sha type -> 500 error"_ in Postman).
-
+🧪 _"query param ..."_ and _"per_page..."_ tests in Postman  
+⚠️ **Issue identified**: if the `sha` query parameter contains a typo and the `author` parameter is populated, the response returns a `500` error (🧪 _"sha type -> 500 error"_ in Postman).  
 💡 **Note:** The API supports using a truncated `sha` (🧪 _"query param sha truncated"_ test in Postman)
 
 ---
 
 ### 4. Headers
-**Test Purpose:**  
-To ensure the correct Content-Type and Link headers and `text_matches` (🧪 _"With text match metadata"_ test in Postman) field are returned.
+**Purpose**  
+- To ensure the correct Content-Type header is returned.
 
 **Why:**  
-Ensures the API communicates its response format correctly.
+- Ensures the API communicates its response format correctly.
 
 **Results:**
 ✅ **Passed**
@@ -217,11 +215,11 @@ Ensures the API communicates its response format correctly.
 ---
 
 ### 5. Performance
-**Test Purpose:**  
-To measure response time and ensure it meets performance benchmarks.
+**Purpose**  
+- To measure response time and ensure it meets performance benchmarks.
 
 **Why:**  
-Confirms the API performs well under normal conditions.
+- Confirms the API performs well under normal conditions.
 
 **Results:**
 ✅ **Passed**
@@ -231,10 +229,10 @@ Confirms the API performs well under normal conditions.
 
 ## Tests for Get Repository Content
 ### 1. Response Status Code
-**Purpose**:  
-Ensure the server responds with the correct HTTP status code for both valid and invalid requests.
+**Purpose:**   
+- Ensure the server responds with the correct HTTP status code for both valid and invalid requests.
 
-**Why**:  
+**Why:**  
 - **200**: Confirms the request was processed successfully (🧪 _"Root dir"_ test in Postman for an example).
 - **404**: Verifies API's behavior with missing or invalid required path parameters (🧪 _"owner not provided"_ and _"invalid ref"_ tests in Postman for an example).
 
@@ -244,10 +242,10 @@ Ensure the server responds with the correct HTTP status code for both valid and 
 ---
 
 ### 2. Response Body Structure
-**Purpose**:  
-Verify the structure of the response matches the provided schema.
+**Purpose:**   
+- Verify the structure of the response matches the provided schema.
 
-**Why**:  
+**Why:**  
 - Ensures the API returns the required fields and adheres to its contract.
 
 **Results**:  
@@ -259,9 +257,10 @@ Verify the structure of the response matches the provided schema.
 ### 3. Query Parameters
 
 **Purpose:**  
-To ensure the query parameters affect the results as expected.
+- To ensure the query parameters affect the results as expected.
 
-**Why:** Ensures the results align with query parameter.
+**Why:**  
+- Ensures the results align with query parameter.
 
 **Results:**  
 ✅ **Passed**
@@ -270,11 +269,11 @@ To ensure the query parameters affect the results as expected.
 ---
 
 ### 4. Headers
-**Test Purpose:**  
-To ensure the correct Content-Type and Link headers and `text_matches` (🧪 _"With text match metadata"_ test in Postman) field are returned.
+**Purpose**  
+- To ensure the correct Content-Type headers (🧪 _"header accept-..."_ tests in Postman) is returned.
 
 **Why:**  
-Ensures the API communicates its response format correctly.
+- Ensures the API communicates its response format correctly.
 
 **Results:**
 ✅ **Passed**
@@ -282,11 +281,11 @@ Ensures the API communicates its response format correctly.
 ---
 
 ### 5. Performance
-**Test Purpose:**  
-To measure response time and ensure it meets performance benchmarks.
+**Purpose**  
+- To measure response time and ensure it meets performance benchmarks.
 
 **Why:**  
-Confirms the API performs well under normal conditions.
+- Confirms the API performs well under normal conditions.
 
 **Results:**
 ✅ **Passed**
