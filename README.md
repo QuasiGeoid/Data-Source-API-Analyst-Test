@@ -21,16 +21,16 @@ The task involves working with the **GitHub API** to test the following endpoint
 Ensure the server responds with the correct HTTP status code for both valid and invalid requests.
 
 **Why**:  
-- **200**: Confirms the request was processed successfully (see 🧪_"Request includes only the required query parameter"_ test in Postman).
-- **422**: Verifies API's behavior with missing required or invalid value of query parameter (see _"Required parameter not provided"_ test in Postman).
+- **200**: Confirms the request was processed successfully (see 🧪 _"Request includes only the required query parameter"_ test in Postman).
+- **422**: Verifies API's behavior with missing required or invalid value of query parameter (see 🧪 _"Required parameter not provided"_ test in Postman).
 
 **Results**:  
 💡 **Note:**
-The API ignores invalid values for non-required query parameters (see 🧪_"With invalid values of query params"_ test in Postman).
+The API ignores invalid values for non-required query parameters (see 🧪 _"With invalid values of query params"_ test in Postman).
 
 ---
 
-### 2. Validate Response Body Structure
+### 2. Response Body Structure
 **Purpose**:  
 Verify the structure of the response matches the provided schema.
 
@@ -45,7 +45,7 @@ The JSON schema is not entirely correct:
 
 ---
 
-### 3. Validate Query Parameters
+### 3. Query Parameters
 
 **Purpose:**  
 To ensure the query parameters affect the results as expected (`sort`, `order`, `per_page`, `page`).
@@ -62,7 +62,7 @@ To ensure the query parameters affect the results as expected (`sort`, `order`, 
 
 ---
 
-### 4. Validate Headers
+### 4. Headers
 **Test Purpose:**  
 To ensure the correct Content-Type and Link headers and `text_matches` (see 🧪 _"With text match metadata"_ test in Postman) field are returned.
 
@@ -71,4 +71,15 @@ Ensures the API communicates its response format correctly.
 
 **Results:**
 ✅ **Passed**
+
+### 5. Performance
+**Test Purpose:**  
+To measure response time and ensure it meets performance benchmarks..
+
+**Why:**  
+Confirms the API performs well under normal conditions.
+
+**Results:**
+![Screenshot from 2024-11-28 11-11-21](https://github.com/user-attachments/assets/6e1cbac5-2215-426e-bd4c-6b436d0567ee)
+
 
