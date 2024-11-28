@@ -197,7 +197,9 @@ To ensure the query parameters affect the results as expected.
 
 **Results:**
 🧪 _"query param ..."_ and _"per_page..."_ tests in Postman
+
 ⚠️ **Issue identified**: if the `sha` query parameter contains a typo and the `author` parameter is populated, the response returns a `500` error.
+
 💡 **Note:** The API supports using a truncated `sha` (🧪 _"query param sha truncated"_ test in Postman)
 
 ---
