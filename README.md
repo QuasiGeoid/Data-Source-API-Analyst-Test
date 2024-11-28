@@ -4,13 +4,58 @@ This document outlines the homework assignment for the **Data Source API Analyst
 
 ---
 
-## Client Needs
+# Client Requirements
 
-The task involves working with the **GitHub API** to test the following endpoints:
+The client outlined the following requirements for the project:
 
-1. **Search Repositories (public)**
-2. **List Commits**
-3. **Contents**
+## 1. Search Repositories (public)
+
+**Purpose:**  
+Allow users to search for public repositories based on keywords, descriptions, or other metadata.
+
+**Features:**  
+- Support for paginated results.
+- Ability to sort repositories by relevance, popularity, or recency.
+
+---
+
+## 2. Retrieve Commits
+
+**Purpose:**  
+Provide access to the commit history of a specific repository or branch.
+
+**Features:**
+- Support for paginated results.
+- Return commit messages, authors, and timestamps.  
+- Support for filtering commits by date range or author.  
+- Include optional details like file changes in the response.  
+
+**Requirements:** 
+- The API must handle both full SHA and truncated SHA values seamlessly.
+
+---
+
+## 3. Access Repository Contents
+
+**Purpose:**  
+Enable users to retrieve the contents of a repository, including files and directories.
+
+**Features:**  
+- Differentiate between files and directories in responses.  
+- Support for retrieving content at a specific commit or branch using SHA.  
+- Include metadata such as encoding, file size, and content type for files.
+
+---
+
+## 4. Error Handling
+
+**Purpose:**  
+Ensure the API delivers clear and actionable error messages.
+
+**Requirements:**  
+- Handle **404 errors** gracefully when a path does not exist.  
+- Return **400 errors** for malformed requests (e.g., invalid paths).  
+- Invalid access token must return a **401 error** with a descriptive message.
 
 ---
 
@@ -21,13 +66,13 @@ The task involves working with the **GitHub API** to test the following endpoint
 Ensure the server responds with the correct HTTP status code for both valid and invalid requests.
 
 **Why**:  
-- **200**: Confirms the request was processed successfully (see 🧪 _"Request includes only the required query parameter"_ test in Postman).
-- **422**: Verifies API's behavior with missing required or invalid value of query parameter (see 🧪 _"Required parameter not provided"_ test in Postman).
+- **200**: Confirms the request was processed successfully (🧪 _"Request includes only the required query parameter"_ test in Postman).
+- **422**: Verifies API's behavior with missing required or invalid value of query parameter (🧪 _"Required parameter not provided"_ test in Postman).
 
 **Results**:
 ✅ **Passed**
 💡 **Note:**
-The API ignores invalid values for non-required query parameters (see 🧪 _"With invalid values of query params"_ test in Postman).
+The API ignores invalid values for non-required query parameters (🧪 _"With invalid values of query params"_ test in Postman).
 
 ---
 
@@ -52,20 +97,20 @@ The JSON schema is not entirely correct:
 To ensure the query parameters affect the results as expected (`sort`, `order`, `per_page`, `page`).
 
 **Why:**  
-- **Sorting:** Ensures the results align with the `sort` and `order` parameters (see 🧪 _"Sort by..."_ tests in Postman).  
-- **Pagination:** Confirms the correct number of results is returned (see 🧪 _"per_page..."_ tests in Postman).
+- **Sorting:** Ensures the results align with the `sort` and `order` parameters (🧪 _"Sort by..."_ tests in Postman).  
+- **Pagination:** Confirms the correct number of results is returned (🧪 _"per_page..."_ tests in Postman).
 
 **Results:**  
 ⚠️ **Issues identified**:  
-1. Sorting in ascending order by `forks` does not differentiate between repositories with a `forks_count` (`forks`) of 0 or 1 (see 🧪 _"Sort by forks in ascending order"_ test in Postman).  
-2. The sorting order by `help-wanted-issues` is not working as expected because it mixes items with and without `help-wanted` in their `topics`. However, all repositories with the `help-wanted` topic are correctly sorted by `open_issues_count` (see 🧪 _"Sort by help-wanted-issues in default order"_ test in Postman).  
-3. The sorting order by `updated` is not working as expected because the order based on the `updated_at` field value can be incorrect (see 🧪 _"Sort by updated in ascending order"_ test in Postman).
+1. Sorting in ascending order by `forks` does not differentiate between repositories with a `forks_count` (`forks`) of 0 or 1 (🧪 _"Sort by forks in ascending order"_ test in Postman).  
+2. The sorting order by `help-wanted-issues` is not working as expected because it mixes items with and without `help-wanted` in their `topics`. However, all repositories with the `help-wanted` topic are correctly sorted by `open_issues_count` (🧪 _"Sort by help-wanted-issues in default order"_ test in Postman).  
+3. The sorting order by `updated` is not working as expected because the order based on the `updated_at` field value can be incorrect (🧪 _"Sort by updated in ascending order"_ test in Postman).
 
 ---
 
 ### 4. Headers
 **Test Purpose:**  
-To ensure the correct Content-Type and Link headers and `text_matches` (see 🧪 _"With text match metadata"_ test in Postman) field are returned.
+To ensure the correct Content-Type and Link headers and `text_matches` (🧪 _"With text match metadata"_ test in Postman) field are returned.
 
 **Why:**  
 Ensures the API communicates its response format correctly.
@@ -121,13 +166,13 @@ Verifies the API behaves as expected when constraints are exceeded, maintaining 
 Ensure the server responds with the correct HTTP status code for both valid and invalid requests.
 
 **Why**:  
-- **200**: Confirms the request was processed successfully (see 🧪 _"Required params are provided"_ test in Postman).
-- **404**: Verifies API's behavior with missing or invalid required path parameters (see 🧪 _"owner not provided"_, _"repo not provided"_, and _"Invalid combination of owner and repo"_ tests in Postman).
+- **200**: Confirms the request was processed successfully (🧪 _"Required params are provided"_ test in Postman).
+- **404**: Verifies API's behavior with missing or invalid required path parameters (🧪 _"owner not provided"_, _"repo not provided"_, and _"Invalid combination of owner and repo"_ tests in Postman).
 
 **Results**:
 ✅ **Passed**
 💡 **Note:**
-The API ignores invalid values for non-required query parameters (see 🧪 _"With invalid values of query params"_ test in Postman).
+The API ignores invalid values for non-required query parameters (🧪 _"With invalid values of query params"_ test in Postman).
 
 ---
 
@@ -139,7 +184,7 @@ Verify the structure of the response matches the provided schema.
 - Ensures the API returns the required fields and adheres to its contract.
 
 **Results**:  
-⚠️ **Issue identified**: author can be null, not just object (see 🧪 "_Invalid schema ("author": null)"_ test in Postman).
+⚠️ **Issue identified**: author can be null, not just object (🧪 "_Invalid schema ("author": null)"_ test in Postman).
 
 ---
 
@@ -152,13 +197,14 @@ To ensure the query parameters affect the results as expected.
 
 **Results:**  
 ✅ **Passed**
-(see 🧪 _"query param ..."_ and _"per_page..."_ tests in Postman)
+(🧪 _"query param ..."_ and _"per_page..."_ tests in Postman)
+💡 **Note:** The API supports using a truncated `sha` (🧪 _"query param sha truncated"_ test in Postman)
 
 ---
 
 ### 4. Headers
 **Test Purpose:**  
-To ensure the correct Content-Type and Link headers and `text_matches` (see 🧪 _"With text match metadata"_ test in Postman) field are returned.
+To ensure the correct Content-Type and Link headers and `text_matches` (🧪 _"With text match metadata"_ test in Postman) field are returned.
 
 **Why:**  
 Ensures the API communicates its response format correctly.
@@ -178,3 +224,69 @@ Confirms the API performs well under normal conditions.
 **Results:**
 ✅ **Passed**
 ![Screenshot from 2024-11-28 14-09-14](https://github.com/user-attachments/assets/f95f1c5d-479c-4d9b-88ec-38158f83fab1)
+
+---
+
+## Tests for Get Repository Content
+### 1. Response Status Code
+**Purpose**:  
+Ensure the server responds with the correct HTTP status code for both valid and invalid requests.
+
+**Why**:  
+- **200**: Confirms the request was processed successfully (🧪 _"Root dir"_ test in Postman for an example).
+- **404**: Verifies API's behavior with missing or invalid required path parameters (🧪 _"owner not provided"_ and _"invalid ref"_ tests in Postman for an example).
+
+**Results**:
+✅ **Passed**
+
+---
+
+### 2. Response Body Structure
+**Purpose**:  
+Verify the structure of the response matches the provided schema.
+
+**Why**:  
+- Ensures the API returns the required fields and adheres to its contract.
+
+**Results**:  
+✅ **Passed**
+💡 **Note:** Files and directories have slightly different schemas: directories have an array as the root element.
+
+---
+
+### 3. Query Parameters
+
+**Purpose:**  
+To ensure the query parameters affect the results as expected.
+
+**Why:** Ensures the results align with query parameter.
+
+**Results:**  
+✅ **Passed**
+(🧪 _"ref provided"_ and _"invalid ref"_ tests in Postman)
+
+---
+
+### 4. Headers
+**Test Purpose:**  
+To ensure the correct Content-Type and Link headers and `text_matches` (🧪 _"With text match metadata"_ test in Postman) field are returned.
+
+**Why:**  
+Ensures the API communicates its response format correctly.
+
+**Results:**
+✅ **Passed**
+
+---
+
+### 5. Performance
+**Test Purpose:**  
+To measure response time and ensure it meets performance benchmarks.
+
+**Why:**  
+Confirms the API performs well under normal conditions.
+
+**Results:**
+✅ **Passed**
+![Screenshot from 2024-11-28 16-15-14](https://github.com/user-attachments/assets/c8dc4c8c-ca6c-4a9d-8a0b-18ee97abc389)
+
