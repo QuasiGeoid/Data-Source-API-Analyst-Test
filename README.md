@@ -72,6 +72,8 @@ Ensures the API communicates its response format correctly.
 **Results:**
 ✅ **Passed**
 
+---
+
 ### 5. Performance
 **Test Purpose:**  
 To measure response time and ensure it meets performance benchmarks..
@@ -80,6 +82,7 @@ To measure response time and ensure it meets performance benchmarks..
 Confirms the API performs well under normal conditions.
 
 **Results:**
+✅ **Passed**
 ![Screenshot from 2024-11-28 11-11-21](https://github.com/user-attachments/assets/6e1cbac5-2215-426e-bd4c-6b436d0567ee)
 
 
