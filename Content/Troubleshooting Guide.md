@@ -50,6 +50,11 @@ Authorization: Bearer <your_token>
 ### Issue: API throttling or rate-limiting
 **Causes**  
 Too many requests sent in a short period.  
+The rate limits are the following:
+- 5,000 requests per hour
+- No more than 100 concurrent requests
+- No more than 900 points per minute
+- No more than 90 seconds of CPU time per 60 seconds of real time is allowed. You can roughly estimate the CPU time by measuring the total response time for your API requests
 
 **Solutions**  
 1. Reduce the frequency of API calls.  
